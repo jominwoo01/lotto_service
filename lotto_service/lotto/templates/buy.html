@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 구매</title>
+    <script>
+        function toggleInput() {
+            const type = document.querySelector('input[name="type"]:checked').value;
+            const numberInput = document.getElementById('number-input');
+            if (type === 'manual') {
+                numberInput.style.display = 'block';
+            } else {
+                numberInput.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>로또 구매</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/buy/" method="post">
+        {% csrf_token %}
+        <label><input type="radio" name="type" value="manual" onchange="toggleInput()" checked> 수동</label>
+        <label><input type="radio" name="type" value="auto" onchange="toggleInput()"> 자동</label>
+        <br><br>
+        <div id="number-input">
+            <label for="numbers">번호를 입력하세요 (쉼표로 구분):</label><br>
+            <input type="text" id="numbers" name="numbers" placeholder="예: 1,2,3,4,5,6">
+        </div>
+        <br>
+        <button type="submit">구매하기</button>
+    </form>
+    <hr>
+    <p>자동 선택 시 번호가 자동으로 생성됩니다.</p>
+    <br>
+    <a href="/" style="margin-right: 10px;">홈으로 돌아가기</a>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구매 완료</title>
+</head>
+<body>
+    <h1>로또 구매 완료</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <p>구매한 티켓 번호: <strong>{{ numbers }}</strong></p>
+        <p>티켓 번호 (확인용): <strong>{{ ticket_id }}</strong></p>
+        <p>구매 날짜: <strong>{{ purchased_at }}</strong></p>
+        <br>
+        <a href="/results/?ticket_id={{ ticket_id }}" style="margin-right: 10px;">결과 확인하기</a>
+        <a href="/" style="margin-right: 10px;">홈으로 돌아가기</a>
+    {% endif %}
+    <br><br>
+    <a href="/buy/" style="color: gray;">다른 티켓 구매하기</a>
+</body>
+</html>

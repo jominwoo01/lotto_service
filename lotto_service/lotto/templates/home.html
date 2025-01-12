@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 시스템</title>
+</head>
+<body>
+    <h1>로또 시스템 홈</h1>
+
+    {% if user.is_authenticated %}
+        <p>환영합니다, {{ user.username }}님!</p>
+        <form method="post" action="/logout/" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit">로그아웃</button>
+        </form>
+    {% else %}
+        <a href="/admin/login/">로그인</a>
+    {% endif %}
+
+    <h2>일반 사용자 기능</h2>
+    <ul>
+        <li><a href="/buy/">로또 구매</a></li>
+        <li><a href="/results/">결과 확인</a></li>
+        <li><a href="/stats/">통계 보기</a></li>
+        <li><a href="/my-tickets/">구매 내역 보기</a></li>
+    </ul>
+
+    {% if user.is_staff %}
+        <h2>관리자 전용 기능</h2>
+        <ul>
+            <li><a href="/toggle-sales/">판매 상태 관리</a></li>
+            <li><a href="/sales-summary/">판매 요약</a></li>
+            <li><a href="/draw/">당첨 번호 추첨</a></li>
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구매한 티켓 내역</title>
+</head>
+<body>
+    <h1>구매한 티켓 내역</h1>
+
+    {% if ticket_data %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>티켓 번호</th>
+                    <th>사용자가 입력한 추첨 번호</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ticket in ticket_data %}
+                    <tr>
+                        <td>{{ ticket.ticket_number }}</td> <!-- 티켓 번호 (구매 순서) -->
+                        <td>{{ ticket.numbers }}</td> <!-- 사용자가 입력한 추첨 번호 -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>구매한 티켓이 없습니다.</p>
+    {% endif %}
+
+    <br>
+    <a href="/" style="text-decoration: none; color: blue;">홈으로 돌아가기</a>
+</body>
+</html>

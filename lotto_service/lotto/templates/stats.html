@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>당첨 통계</title>
+</head>
+<body>
+    <h1>당첨 통계</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% else %}
+        <!-- 당첨 번호 및 보너스 번호 표시 -->
+        <p>현재 당첨 번호: {{ winning_numbers }}</p>
+        <p>보너스 번호: {{ bonus_number }}</p>
+        <hr>
+        <ul>
+            <li>1등 당첨자 수: {{ results.1등_당첨자_수 }}</li>
+            <li>2등 당첨자 수: {{ results.2등_당첨자_수 }}</li>
+            <li>3등 당첨자 수: {{ results.3등_당첨자_수 }}</li>
+            <li>4등 당첨자 수: {{ results.4등_당첨자_수 }}</li>
+            <li>5등 당첨자 수: {{ results.5등_당첨자_수 }}</li>
+            <li>낙첨자 수: {{ results.낙첨자_수 }}</li>
+            <li>전체 티켓 수: {{ results.전체_티켓_수 }}</li>
+        </ul>
+    {% endif %}
+    <br>
+    <a href="/" style="text-decoration: none; color: blue;">홈으로 돌아가기</a>
+</body>
+</html>

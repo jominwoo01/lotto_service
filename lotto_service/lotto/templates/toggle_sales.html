@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>판매 상태 관리</title>
+</head>
+<body>
+    <h1>판매 상태 관리</h1>
+    <p>현재 상태: {{ is_sales_open|yesno:"판매 중,판매 종료" }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">
+            {% if is_sales_open %}
+                판매 종료
+            {% else %}
+                판매 시작
+            {% endif %}
+        </button>
+    </form>
+    <a href="/">홈으로 돌아가기</a> 
+</body>
+</html>

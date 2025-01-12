@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>당첨 번호 추첨</title>
+</head>
+<body>
+    <h1>당첨 번호 추첨</h1>
+    {% if success %}
+        <p>당첨 번호: <strong>{{ numbers }}</strong></p>
+        <p>보너스 번호: <strong>{{ bonus_number }}</strong></p>
+    {% else %}
+        <p>아직 추첨되지 않았습니다.</p>
+        <form action="/draw/" method="post">
+            {% csrf_token %}
+            <button type="submit">추첨하기</button>
+        </form>
+    {% endif %}
+    <br>
+    <a href="/" style="margin-right: 10px;">홈으로 돌아가기</a>
+</body>
+</html>

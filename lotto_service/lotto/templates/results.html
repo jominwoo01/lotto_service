@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>결과 확인</title>
+</head>
+<body>
+    <h1>결과 확인</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form action="/results/" method="post">
+        {% csrf_token %}
+        <label for="ticket_id">티켓 번호를 입력하세요:</label><br>
+        <input type="number" id="ticket_id" name="ticket_id" placeholder="예: 1"><br><br>
+        <button type="submit">결과 확인</button>
+    </form>
+    <hr>
+    {% if ticket_id %}
+        <p>입력한 티켓 번호: {{ ticket_id }}</p>
+        <p>티켓 번호 조합: {{ ticket_numbers }}</p>
+        <p>당첨 번호: {{ winning_numbers }}</p>
+        <p>보너스 번호: {{ bonus_number }}</p>
+        {% if is_winner %}
+            <p style="color: green;">축하합니다! {{ rank }}에 당첨되었습니다!</p>
+        {% else %}
+            <p style="color: red;">아쉽지만 당첨되지 않았습니다.</p>
+        {% endif %}
+    {% endif %}
+    <br>
+    <a href="/" style="margin-right: 10px;">홈으로 돌아가기</a>
+</body>
+</html>
